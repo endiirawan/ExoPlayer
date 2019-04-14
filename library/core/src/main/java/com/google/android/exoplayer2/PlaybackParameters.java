@@ -35,6 +35,8 @@ public final class PlaybackParameters {
    */
   public final float pitch;
 
+  public final long videoOffsetUs;
+
   private final int scaledUsPerMs;
 
   /**
@@ -47,6 +49,21 @@ public final class PlaybackParameters {
     this.speed = speed;
     this.pitch = pitch;
     scaledUsPerMs = Math.round(speed * 1000f);
+    videoOffsetUs = 0;
+  }
+
+  /**
+   * Creates new playback parameters.
+   *
+   * @param speed The factor by which playback will be sped up.
+   * @param pitch The factor by which the audio pitch will be scaled.
+   * @param videoOffsetUs The factor by which the video offset will be added for av sync.
+   */
+  public PlaybackParameters(float speed, float pitch, long videoOffsetUs) {
+    this.speed = speed;
+    this.pitch = pitch;
+    scaledUsPerMs = Math.round(speed * 1000f);
+    this.videoOffsetUs = videoOffsetUs;
   }
 
   /**

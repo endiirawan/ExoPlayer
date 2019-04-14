@@ -146,6 +146,9 @@ public class SimpleExoPlayer implements ExoPlayer {
 
     // Build the player and associated objects.
     player = createExoPlayerImpl(renderers, trackSelector, loadControl);
+    PlaybackParameters playbackParameters = new PlaybackParameters(1f, 1f, 1500000);
+    player.setPlaybackParameters(playbackParameters);
+
   }
 
   /**

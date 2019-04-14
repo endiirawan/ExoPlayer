@@ -124,6 +124,7 @@ import java.io.IOException;
   private int customMessagesSent;
   private int customMessagesProcessed;
   private long elapsedRealtimeUs;
+  private long videoOffsetUsRelativeToAudio = 0;
 
   private int pendingPrepareCount;
   private int pendingInitialSeekCount;
@@ -527,7 +528,7 @@ import java.io.IOException;
       periodPositionUs = playingPeriodHolder.toPeriodTime(rendererPositionUs);
     }
     playbackInfo.positionUs = periodPositionUs;
-    elapsedRealtimeUs = SystemClock.elapsedRealtime() * 1000;
+    elapsedRealtimeUs = (SystemClock.elapsedRealtime() * 1000) + playbackParameters.videoOffsetUs;
 
     // Update the buffered position.
     long bufferedPositionUs = enabledRenderers.length == 0 ? C.TIME_END_OF_SOURCE
