@@ -38,6 +38,7 @@ import com.google.android.exoplayer2.C.ContentType;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.PlaybackPreparer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -402,6 +403,12 @@ public class PlayerActivity extends Activity
       playerView.setPlaybackPreparer(this);
       debugViewHelper = new DebugTextViewHelper(player, debugTextView);
       debugViewHelper.start();
+
+      // BEGIN: SAMPLE USAGE of VIDEO OFFSET CONFIGURATION
+      final long videoOffsetUs = 500 * 1000; // video offset in micro seconds
+      PlaybackParameters playbackParameters = new PlaybackParameters(1f, 1f, videoOffsetUs, false);
+      player.setPlaybackParameters(playbackParameters);
+      // END
 
       MediaSource[] mediaSources = new MediaSource[uris.length];
       for (int i = 0; i < uris.length; i++) {
